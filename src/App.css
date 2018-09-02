@@ -104,3 +104,16 @@ input {
   text-align: center;
   font-family: $font;
 }  
+
+#page-numbers {
+  list-style: none;
+  display: flex;
+  margin-left: 29%;
+}
+
+#page-numbers > li {
+  margin-right: 0.6em;
+  color: white;
+  user-select: none;
+  cursor: pointer;
+}

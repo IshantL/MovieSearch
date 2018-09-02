@@ -5,25 +5,71 @@ import Movie from './Movie';
 
 class Movies extends Component {
 
-  render() {    
-    return (
-      <div >
-      <ul className="movies">
-        {this.props.movies.map(movie => (
-          <li key={movie.id}>
+  constructor(props) {
+    super(props);
+    this.state = {
+          todos: '',
+          currentPage: 1,
+          todosPerPage: 30
+        };
+        this.handleClick = this.handleClick.bind(this);
+    
+    }
+ handleClick(event) {
+        this.setState({
+          currentPage: Number(event.target.id)
+        });
+      }
+
+render() {
+        debugger;
+        const { currentPage, todosPerPage } = this.state;
+
+        // Logic for displaying current todos
+        const indexOfLastTodo = currentPage * todosPerPage;
+        const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
+        const currentTodos = this.props.movies.slice(indexOfFirstTodo, indexOfLastTodo);
+
+        const renderTodos = currentTodos.map((movie, index) => {
+          return <li key={movie.id}>
           <Movie {...movie} />
           </li>
-        ))}
-     </ul>
-      </div>
-    );
-  }
+        });
+
+        // Logic for displaying page numbers
+        const pageNumbers = [];
+        for (let i = 1; i <= Math.ceil(this.props.movies.length / todosPerPage); i++) {
+          pageNumbers.push(i);
+        }
+
+        const renderPageNumbers = pageNumbers.map(number => {
+          debugger;
+          return (
+            <li
+              key={number}
+              id={number}
+              onClick={this.handleClick}
+            >
+              {number}
+            </li>
+          );
+        });
+
+        return (
+          <div>
+           <ul className="movies">
+            {renderTodos}
+          </ul>
+          <ul id="page-numbers">
+            {renderPageNumbers}
+          </ul>
+          </div>
+        );
+      }
 
 }
-
 Movies.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.object)
 };
 
 export default Movies;
-
