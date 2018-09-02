@@ -15,8 +15,8 @@ class SortBy extends Component {
 		return (
 				<div>
 					<span>Sort By: </span>
-					<span>
-						<select onChange={this.onChange}>
+					<span >
+						<select className="selectbox" onChange={this.onChange}>
 						  <option value="" disabled selected>Select your option</option>
 						  <option value="content_rating">Popularity Rating</option>
 						  <option value="title_year">Title Year</option>

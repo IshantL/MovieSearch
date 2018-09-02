@@ -59,15 +59,15 @@ input {
 .search {
   font-size: 1.5rem;
   margin: 1.5em auto 3em;
-  max-width: 80%;
+  max-width: 40%;
 }
 
 .search [type='search'] {
-  background-color: #131b20;
-  color: #fff;
+  background-color: #f2f7fa;
   padding: 0.5em 2em;
   text-align: center;
   width: 100%;
+  border-radius: 28px;
 }
 
 .movies {
@@ -82,18 +82,24 @@ input {
 .movies > li {
   box-shadow: 0 0 1em rgba(0, 0, 0, 0.3);
 }
-
+.movie {
+    background-color: dimgrey;
+    border-radius: 12px;
+    height: 160px;
+}
 .movie figcaption {
   padding: 1em;
 }
 
 .movie__title {
   font: 18px Arial,sans-serif;
-  font-weight: normal;
   line-height: 110%;
   margin: 0px;
   color: #fff;
   padding-bottom: 3px;
+  font-style: italic;
+  font-weight: bold;
+  color: cornsilk;
 }
 
 .footer {
@@ -122,4 +128,11 @@ input {
 }
 .card{
       display: block;
+      font-size: 11px;
+      word-wrap: break-word;
+}
+.selectbox {
+  width: 13%;
+  padding: 6px 16px;
+  border-radius: 12px;
 }
