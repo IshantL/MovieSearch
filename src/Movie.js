@@ -8,7 +8,8 @@ class Movie extends Component {
     <figure>
       <img src={''} />
       <figcaption>
-        <h2 className="movie__title">{this.props.movie_title}</h2>
+        <h2 className="movie__title">{this.props.movie_title} ({this.props.title_year})</h2>
+        <span className="card">{this.props.director_name}{this.props.genres}{this.props.language}{this.props.country}{this.props.content_rating}</span>
       </figcaption>
     </figure>
   </div>

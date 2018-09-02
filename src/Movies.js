@@ -10,7 +10,7 @@ class Movies extends Component {
     this.state = {
           todos: '',
           currentPage: 1,
-          todosPerPage: 30
+          todosPerPage: 20
         };
         this.handleClick = this.handleClick.bind(this);
     
@@ -22,7 +22,6 @@ class Movies extends Component {
       }
 
 render() {
-        debugger;
         const { currentPage, todosPerPage } = this.state;
 
         // Logic for displaying current todos
@@ -43,7 +42,6 @@ render() {
         }
 
         const renderPageNumbers = pageNumbers.map(number => {
-          debugger;
           return (
             <li
               key={number}

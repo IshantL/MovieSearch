@@ -1,16 +1,21 @@
- import React from 'react';
- import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
-const Search = props => (
-  <form className="search" onInput={event => props.onInput(event.target.value)}>
-    <input type="search" value={props.query} placeholder={props.placeholder} />
-  </form>
-);
+class Search extends Component {
+constructor(props){
+	super(props);
+	this.onChangeText=this.onChangeText.bind(this);
+}
 
-Search.propTypes = {
-  query      : PropTypes.string.isRequired,
-  onInput    : PropTypes.func.isRequired,
-  placeholder: PropTypes.string
-};
+onChangeText(event){
+	this.props.onInput(event.target.value);
+}
 
- export default Search;
+render(){
+	return(
+			<div className="search">
+			    <input type="search" onChange={this.onChangeText} placeholder={this.props.placeholder} />
+			</div>
+		)
+}
+}
+export default Search;

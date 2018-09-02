@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Movies from './Movies';
 import Search from './Search';
+import SortBy from './SortBy';
 
 class App extends Component {
 
@@ -10,57 +11,54 @@ class App extends Component {
     
     this.state = {
       movies: [],
-      query: ''
+      filterMovies: []
     };
     
     this.onInput = this.onInput.bind(this);
+    this.onSort = this.onSort.bind(this);
   }
   
   onInput(query) {
-    this.setState({
-      query
-    });
-    
-    this.searchMovie(query);
+    let filterData =  this.state.movies.filter((obje) => obje.movie_title.toLowerCase().startsWith(query.toLowerCase()));
+    this.setState({filterMovies: filterData});
   }
   
+  onSort (value) {
+    let sortData;
+    if(value==='title_year'){
+      sortData = this.state.movies.sort((a, b) => a.title_year - b.title_year);
+      this.setState({filterMovies: sortData}); 
+    }else if(value==='content_rating'){
+      sortData = this.state.movies.sort((a, b) => a.content_rating > b.content_rating);
+      this.setState({filterMovies: sortData}); 
+    }
+
+  }
+
   getPopularMovies() {
     const url = `http://starlord.hackerearth.com/movieslisting`;
-        debugger;
-
     fetch (url)
       .then(response => response.json())
       .then(data => {
         this.setState({
-          movies: data
+          movies: data,
+          filterMovies: data
         })
       });
   }
-  
-  searchMovie(query) {
-    const url = `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=cfe422613b250f702980a3bbf9e90716`;
     
-    fetch (url)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          movies: data
-        })
-      });
-  }
-  
   componentDidMount() {
-    this.getPopularMovies();
+    this.getPopularMovies();  
   }
   
   render() {
-    const { movies, query } = this.state;
-    const isSearched = query => item => !query || item.title.toLowerCase().includes(query.toLowerCase());
-    
+    const { movies, filterMovies } = this.state;
+  
     return (
       <div className="app">
-        <Search query={query} onInput={this.onInput} placeholder="Search for Movie Title …" />
-        <Movies movies={movies.filter(isSearched(query))} />
+        <Search onInput={this.onInput} placeholder="Search for Movie Title …" />
+        <SortBy onSort={this.onSort}/>
+        <Movies movies={filterMovies} />
       </div>
     );
   }
