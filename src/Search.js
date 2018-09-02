@@ -13,6 +13,7 @@ onChangeText(event){
 render(){
 	return(
 			<div className="search">
+				<div className="title">Movies</div>
 			    <input type="search" onChange={this.onChangeText} placeholder={this.props.placeholder} />
 			</div>
 		)

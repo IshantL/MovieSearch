@@ -55,9 +55,11 @@ render() {
 
         return (
           <div>
+           <div align="right">Page No: {this.state.currentPage} of {pageNumbers.length}</div>
            <ul className="movies">
             {renderTodos}
           </ul>
+          <div align="center">Page No: {this.state.currentPage} of {pageNumbers.length}</div>
           <ul id="page-numbers">
             {renderPageNumbers}
           </ul>

@@ -136,3 +136,7 @@ input {
   padding: 6px 16px;
   border-radius: 12px;
 }
+.title{
+  font-size: 46px;
+  text-align: center;
+}

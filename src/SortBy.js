@@ -19,7 +19,7 @@ class SortBy extends Component {
 						<select className="selectbox" onChange={this.onChange}>
 						  <option value="" disabled selected>Select your option</option>
 						  <option value="content_rating">Popularity Rating</option>
-						  <option value="title_year">Title Year</option>
+						  <option value="title_year">Title Year (Low to High)</option>
 						</select>
 					</span>
 				</div>
